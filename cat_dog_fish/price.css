@@ -1,0 +1,54 @@
+body {
+    background-color: lightskyblue;
+}
+
+.wrapper {
+    display: flex;
+    max-width: 80%;
+    margin: 20px auto;
+    
+
+}
+.animal {
+    display: flex;
+    flex-wrap: wrap;    
+    width: 33%;
+    margin: 0px 20px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 255, 0.5);
+    padding: 10px;   
+    text-align: center;
+    justify-content: center;
+
+}
+
+.animal button {
+    background-color: yellow;    
+    align-self: center;   
+    padding: 5px;
+    
+    
+    
+}
+
+.animal >* {
+    width: 100%;
+    margin: 5px;
+    
+}
+.animal h2 {
+    color: white ;
+}
+
+.price {
+    font-size: 40px;
+}
+
+.wrapper1 {
+    align-items: center;
+    
+}
+
+.wrapper1 button {
+    width: fit-content;
+}
