@@ -6,9 +6,8 @@ body {
     display: flex;
     max-width: 80%;
     margin: 20px auto;
-    
-
 }
+
 .animal {
     display: flex;
     flex-wrap: wrap;    
@@ -19,23 +18,19 @@ body {
     padding: 10px;   
     text-align: center;
     justify-content: center;
-
 }
 
 .animal button {
     background-color: yellow;    
     align-self: center;   
-    padding: 5px;
-    
-    
-    
+    padding: 5px;   
 }
 
 .animal >* {
-    width: 100%;
-    margin: 5px;
-    
+    width: calc(100% - 10px);
+    margin: 5px;    
 }
+
 .animal h2 {
     color: white ;
 }
@@ -44,11 +39,10 @@ body {
     font-size: 40px;
 }
 
-.wrapper1 {
-    align-items: center;
-    
+.wrapper--center {
+    align-items: center;    
 }
 
-.wrapper1 button {
+.wrapper--center button {
     width: fit-content;
 }
