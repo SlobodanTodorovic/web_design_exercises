@@ -1,0 +1,24 @@
+table th,
+table td {
+    border: 1px solid yellow;    
+    padding: 10px;
+}
+
+table.t1 {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.t1 tr td:nth-child(3n+1){
+    background-color: red;
+}
+
+table.t1 tr td:nth-child(3n+2) {
+    background-color: blue;
+}
+
+table.t1 tr td:nth-child(3n+0) {
+    background-color: white;
+}
+
