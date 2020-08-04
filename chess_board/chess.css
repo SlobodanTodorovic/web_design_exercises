@@ -1,0 +1,20 @@
+.wrapper {
+    height: 500px;
+    width: 500px;
+    border:20px solid darksalmon;
+}
+
+.chess {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+} 
+
+table.chess tr:nth-child(even) td:nth-child(odd),table.chess tr:nth-child(odd) td:nth-child(even) {
+    background-color: wheat;
+}
+
+table.chess tr:nth-child(even) td:nth-child(even),table.chess tr:nth-child(odd) td:nth-child(odd) {
+    background-color: brown;
+}
+
