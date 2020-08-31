@@ -1,0 +1,271 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.logo {           
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo p ,
+.logo div {
+    width: 300px;
+    height: 60px;    
+    font-size:22px ;
+    text-align: center;
+}
+
+.social {
+    width: 20px;
+    height: 20px;     
+    margin: 20px 10px;     
+}
+
+.menu {
+    position: absolute;
+    right: 100px;
+    top: 50px;
+    background-color: black;    
+    width: 40px;
+    height: 40px;
+    font-size: 35px;
+    text-align: center;
+    display: none;       
+}
+
+.menu:focus ~ .nav {
+    display: block;
+    position: fixed;
+    right: 100px;
+    top: 100px;
+    background-color: black;
+}
+
+.menu:focus ~ .nav li {
+    color: white;
+    background-color: black;
+}
+
+.nav {        
+    flex-wrap: wrap;
+    list-style: none;    
+    margin: 0;
+    padding: 20px 0px;
+}
+
+.nav li {
+    flex:1 0 110px ;
+}
+
+.copyrights {       
+    padding: 30px 0px;
+    justify-content: space-between;         
+}
+
+.news-container {    
+    padding: 25px 0px;        
+    justify-content: space-between;
+} 
+
+.news-container img {
+    width: 35%;
+    height: auto;     
+}
+
+.img img,
+.footer-container div img{
+    max-width: 100%;
+    height: auto;    
+}
+
+.footer-container img {
+    flex-shrink: 0;
+}
+
+.footer-container * {
+    flex-shrink: 1;
+    flex-basis: 25%;
+    margin: 10px;
+}
+
+.copyrights div a {
+    font-size: 22px;
+}
+
+.footer-container div ul li {
+    text-indent: 0px;
+}
+
+.footer-container {
+    padding: 25px 0px;
+    box-sizing: border-box;
+}
+
+.articles ul {
+    padding: 0px;
+}
+
+.contact p i{
+    margin: 0px;
+}
+
+.max {
+    max-width: 1110px;
+    margin: auto;    
+}
+
+.container {    
+    flex-direction: column;
+    position: relative;
+    min-width: 380px;        
+}
+
+.container img {
+    margin: auto;
+}
+
+.top-ten {       
+    padding: 50px;
+    font-size: 33px;
+}
+
+.sun img {
+    padding: 50px;
+    margin: auto;    
+}
+
+.yelow {
+    background-color: yellow;
+}
+
+.dark-green {
+    background-color: rgb(1, 66, 1);
+}
+
+.mission {
+    background: url(https://upload.wikimedia.org/wikipedia/commons/5/5a/Spomen_park_Bubanj.JPG) ;
+    background-repeat: no-repeat;    
+    background-size: cover;
+    padding: 50px;       
+    text-align: center;
+    background-position: center;
+}    
+
+.news-container p {
+    color: grey;
+}
+
+.news-container a ,
+.news-header a {
+    text-decoration: none;
+    color: rgb(30, 77, 30);
+    font-weight: bolder;
+}
+
+.news-container img {
+    margin-right: 22px;
+}
+
+.news-header {        
+    padding: 25px 0px;          
+}
+
+.news-header h3 {
+    margin-right: 20px;
+}
+
+.news-header a {
+    margin: 18.7px 0px;
+}
+
+.statistics {    
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    color: rgb(6, 126, 12);    
+    font-size: 47px;      
+}
+
+.statistics p { 
+    height: 0px;       
+}
+
+.statistics p:last-of-type {
+    font-size: 14px;
+    margin-bottom: 50px;
+    margin-top: 65px;
+}
+
+.statistics-container {
+    border-top:1px solid grey;
+}
+
+.green {
+    background-color: rgb(6, 126, 12);
+}
+
+.white {
+    color: white;
+}
+
+.flex {
+    display: flex;
+}
+
+@media only screen and (max-width: 960px) {
+    .logo {
+        flex-direction: column;
+    }
+
+    .copyrights {
+        justify-content: space-around;        
+    }  
+}
+
+@media only screen and (max-width: 770px) {
+        
+        .menu {
+            display: block;
+        }           
+
+        .yelow {
+            display: none;
+        }
+        
+        .footer-container{
+            flex-direction: column;
+        }    
+        
+        .copyrights{
+            flex-direction: column;
+            align-items: flex-start;            
+        }
+
+        .news-container {
+            flex-direction: column;            
+        }
+
+        .news-container img {
+            width: 100%;
+            height: auto;            
+        }
+
+        .news-container img {
+            margin-right: 0px;
+        }
+
+        .statistics {
+            flex-direction: column;            
+        }
+}
+
+@media only screen and (max-width: 1140px){
+    .max {
+        padding: 10px 20px;
+    }
+
+    .img {
+        padding: 0px;
+    }
+}
+    
