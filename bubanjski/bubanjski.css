@@ -30,20 +30,8 @@ body {
     height: 40px;
     font-size: 35px;
     text-align: center;
-    display: none;       
-}
-
-.menu:focus ~ .nav {
-    display: block;
-    position: fixed;
-    right: 100px;
-    top: 100px;
-    background-color: black;
-}
-
-.menu:focus ~ .nav li {
-    color: white;
-    background-color: black;
+    display: none;   
+    padding: 0;
 }
 
 .nav {        
@@ -226,11 +214,7 @@ body {
         
         .menu {
             display: block;
-        }           
-
-        .yelow {
-            display: none;
-        }
+        }    
         
         .footer-container{
             flex-direction: column;
@@ -257,6 +241,23 @@ body {
         .statistics {
             flex-direction: column;            
         }
+
+        .yelow {
+            visibility: hidden;
+        }
+        /* add this class to <ul class="nav> 
+        in html in order to show menu in small screen. */
+
+        .nav-small {
+            display: block;
+            position: fixed;
+            right: 100px;
+            top: 100px;
+            background-color: black;
+            color: white;
+            visibility: visible;
+        }
+          
 }
 
 @media only screen and (max-width: 1140px){
