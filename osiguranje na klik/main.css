@@ -6,6 +6,8 @@
 @font-face{
     font-family: geomanist;
     src: url(fonts/geomanist-regular-webfont.woff);
+    font-family: gochi-hand;
+    src: url(fonts/gochi-hand-v11-latin-regular.woff);
 }
 
 body {
@@ -199,6 +201,8 @@ body {
     position: relative;
     margin-bottom: 25px;
     color: white;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .ft-title::after {    
@@ -278,13 +282,6 @@ body {
 .dots-rectangle {
     top: 40%;
     left: 60%;    
-}
-
-.dots-square {
-    position: absolute;
-    top: 22px;
-    left: -22px;
-    z-index: -1;
 }
 
 .hero-img1 {
@@ -380,28 +377,44 @@ body {
     margin-top: 28px;
 }
 
+.img-container {
+    position: relative;
+    width: 100%;
+}
+
 .article-img {
     position: relative;    
     padding-left: 48px;  
     display: flex;  
+    align-items: center;
 }
 
-.article-img-why-us {
-    margin: auto 0 ;
-    width: 100%;      
-    max-height: 85%;
-    object-fit: contain;
+.article-img-why-us {    
+    width: 100%;         
 }
 
 .article-img::before {
     position: absolute;
     display: block;
+    top: 57%;
     content: '';
-    height: 100%;
+    padding-top: 100%;
     width: 100%;
+    transform: scale(1.2) translate(0,-50%);
     background-color:  #F9F5F2;     
-    z-index: -1;
+    z-index: -2;
     right: 48px;    
+}
+
+.img-container::after {
+    position: absolute;
+    display: block;
+    content: url(img/dots-square.svg);
+    top: -20px;
+    z-index: -1;
+    left:-20px;
+
+    
 }
 
 .why-us-list {
@@ -423,7 +436,9 @@ body {
 }
 
 .our-offer-title {
-    text-align: center;    
+    text-align: center;
+    max-width: 70%;    
+    margin: 0 auto;
 }
 
 .our-offer-title-label {
@@ -453,8 +468,114 @@ body {
     justify-content: space-between; 
 }
 
+.about-us {
+    margin-top: 120px;
+}
 
-@media only screen and (min-width: 376px) {    
+.article-img.about-us-img {
+    padding-left: 0px;
+    padding-right: 48px;
+}
+
+.about-us-img.article-img::before {
+    right: 0px;
+    left: 48px;
+}
+
+.img-container-why-us {
+    position: relative;
+    width: 100%;
+}
+
+.img-container-why-us::after {
+    top: 185px;
+    right: -30px;
+    left: auto;
+    content: url(img/dots-square-orange.png);
+    position: absolute;
+    display: block;
+    z-index: -1;
+    
+}
+
+.article-text.article-text-why-us {
+    padding-left: 48px;
+    padding-right: 0px;
+}
+
+.quote-bg {
+    background-color: #d6eef2;
+    background-image: url(img/pattern-green.png);
+    margin-top: 64px;
+}
+
+.quote {
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.quote-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 32px;
+}
+
+.quote-indicator {
+    display: flex;
+    justify-content: center;
+}
+
+.quote-actions > * + * {
+    margin-left: 4px;
+}
+
+.quote-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #088E8F;
+}
+
+.quote-review {    
+    font-weight: bold;
+    margin-top: 32px;
+    font-size: 20px;
+}
+
+.quote-user {
+    font-family: gochi-hand,serif;
+    margin-top: 24px;
+    font-size: 20px;
+    color: #088E8F;    
+}
+
+.quote-user-profession {
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.quote-left-arrow {
+    margin-right: 30px;
+}
+
+.quote-right-arrow {
+    margin-left: 30px;
+}
+
+.arrow-container {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+@media only screen and (min-width: 600px) {    
     
     .card-title {
         margin-top: 24px;
@@ -552,11 +673,16 @@ body {
         font-size: 40px;        
     }
     .left-right {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
     .right-left {
-        display: flex;        
-        flex-direction: row-reverse;        
+        display: grid;
+        grid-template-columns: 1fr 1fr;              
+    }
+
+    .right-left *:nth-child(2) {
+        order: -1;
     }
     .article-text {
         margin-left: 0px;
@@ -564,13 +690,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;      
-    }    
-    .right-left > * {
-        flex-basis:  50%;        
-    }
-    .left-right > * {
-        flex-basis:  50%;        
-    }    
+    }        
     .why-us-intro {
         gap: 48px;
     }
@@ -599,6 +719,41 @@ body {
     .our-offer-list {
         grid-template-columns: 1fr 1fr;
         gap: 24px;
+    }
+    .img-container::after{
+        top: -30px;
+        left: -30px;
+    }
+    .quote {
+        padding: 64px 32px;
+    }
+    .quote-title {
+        font-size: 14px;        
+    }
+    .quote-review {
+        max-width: 70%;
+        margin-top: 48px;
+        font-size: 24px;
+    }
+    .quote-user {
+        margin-top: 40px;
+        font-size: 24px;
+    }
+    .quote-user-profession {        
+        font-size: 16px;
+    }
+    .quote-left-arrow {
+        position: absolute;
+        left: 32px;
+        top: 50%;
+    }
+    .quote-right-arrow {
+        position: absolute;
+        right: 32px;
+        top: 50%;
+    }
+    .quote-actions {
+        margin-top: 48px;
     }
 }
 
@@ -678,6 +833,27 @@ body {
     .our-offer-list {
         margin-top: 64px;
     }
+    .article-img.about-us-img {        
+        padding-right: 64px;
+    }
+    .quote {
+        padding: 80px 48px;
+    }
+    .quote-review {
+        margin-top: 64px;        
+    }
+    .quote-user {
+        margin-top: 52px;        
+    }
+    .quote-actions {
+        margin-top: 64px;
+    }
+    .quote-left-arrow {
+        left: 48px;
+    }
+    .quote-right-arrow {
+        right: 48px;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -747,5 +923,33 @@ body {
     .our-offer-list {
         margin-top: 80px;
         grid-template-columns: 1fr 1fr 1fr;
+    }
+    .img-container::after{
+        top: -40px;
+        left: -40px;
+    }
+    .article-img::before{
+        transform: scale(1.1) translate(0,-50%);        
+    }    
+    .article-img.about-us-img {       
+        padding-right: 80px;
+    }
+    .quote {
+        padding: 80px 40px;
+    }
+    .quote-review {
+        margin-top: 80px;        
+    }
+    .quote-user {
+        margin-top: 60px;        
+    }
+    .quote-actions {
+        margin-top: 80px;
+    }
+    .quote-left-arrow {
+        left: 40px;
+    }
+    .quote-right-arrow {
+        right: 40px;
     }
 }
