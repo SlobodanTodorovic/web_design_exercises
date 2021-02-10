@@ -1,0 +1,367 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "osiguranje_na_klik_1",
+  "steps": [
+    {
+      "file": "main.css",
+      "description": "Ovo ne ubuhvata pseudo element. Tako da je praksa da pises ovako:\n\n```css\n*,\n*::before,\n*::after {}\n```",
+      "line": 1
+    },
+    {
+      "file": "main.css",
+      "description": "Ovo nije najbolja opcija, posto ces da preklopis neke native elemente kao sto su naslovi. Oni cesto imaju margine koje su ok. Tako da ovo bih izbegavao.",
+      "line": 3
+    },
+    {
+      "file": "main.css",
+      "description": "@font-face moze da ima samo jednu definiciju familije. Zanaci unutar jednog ovog moze samo jedan `font-family` ali mozes da imas vise fajlove, to je cesto i praksa. Postoje razlicit formati fontova `ttf`, `woff`, `woff2` i onda ti stavis vise njih i browser odabere onaj koji je najbolji.\n\n```css\n@font-face {\n  font-family: \"Open Sans\";\n  src: url(\"/fonts/OpenSans-Regular-webfont.woff2\") format(\"woff2\"),\n       url(\"/fonts/OpenSans-Regular-webfont.woff\") format(\"woff\");\n}\n```\n\nOno sto treba da znas od formata je `woff` i `woff2`. Cak `woff2` ti je dovoljan s obzirom da ga jedino Internet Explorer 11 ne podrzava.",
+      "line": 6
+    },
+    {
+      "file": "main.css",
+      "description": "Body nikad nema padding tako da ovo nista ne radi. Verovatno si video da imas neki prostor pa si ovo probao. Body ima `margin` tako da je sledeca linija dobra, ovo je visak.",
+      "line": 15
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 5
+        },
+        "end": {
+          "line": 22,
+          "character": 24
+        }
+      },
+      "description": "Ovo moze krace da se napise `margin: 0 auto`."
+    },
+    {
+      "file": "main.css",
+      "description": "Ovo nije podrzano. Tako da izbegavaj `gap`.\n\nTakodje stavio si da je flex ali nemas `align-items: center` i text nije centriran.",
+      "line": 50
+    },
+    {
+      "file": "main.css",
+      "description": "`sticky` nema bas najbolju podrsku:\n\nhttps://caniuse.com/css-sticky\n\nGeneralno kad je navigaciju u pitanju i kad je ovako \"globalna\" praksa je da bude `fixed`, jedino sto treba da obratis paznju je kad je fixed da ga izbaci iz document flow-a (znaci ne zauzima prostor).",
+      "line": 56
+    },
+    {
+      "file": "main.css",
+      "description": "Podrazumevana vrednost.",
+      "line": 65
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 77,
+          "character": 5
+        },
+        "end": {
+          "line": 77,
+          "character": 21
+        }
+      },
+      "description": "Retko ali retko kad zelis da nesto bude `inline`. Ako zelis da bude u istom redu (kao u ovom slucaju) uvek zelis `inline-block`. Ponasa se kao `inline` ali ima padding i margine kao `block`. Tako da mozes da mu dodas padding.\n\nTakodje ovaj selektor gore treba izbegavati, zato sto ne znas koji HTML tu moze da se nadje. Recimo neko doda ikonicu i ona ce da **magicno** da postane `inline`. Tako da taj selektor je bolje da bude\n\n`.links .links-item`"
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 84,
+          "character": 1
+        },
+        "end": {
+          "line": 84,
+          "character": 15
+        }
+      },
+      "description": "Ovo je jako rizicno. Znaci uvek biraj klasu kad pises selektor!\n\n`.links .links-link`"
+    },
+    {
+      "file": "main.css",
+      "description": "Ovo se podrazumeva, odakle ovo?",
+      "line": 86
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 96,
+          "character": 1
+        },
+        "end": {
+          "line": 108,
+          "character": 2
+        }
+      },
+      "description": "Ovde pocinju vec da ti se ponavljaju neka pravila. Trudi se da izvuces zajednicke stvari.\n\n*Gohlube: Kao u OOP klase i nasledjivanje, base klasa i onda prosiruje funkcionalnost drugim klasama*\n\nZnaci trebas da imas osnovnu klasu `.button` i onda da imas klase za boju, velicinu i druge varijante.\n\n**Primer:**\n\n```scss\n.button {\n  border: 0; // Resetuj ivicu koje svako dugme ima\n  border-radius: 4px;\n  cursor: pointer;\n  text-align: center;\n}\n\n// Onda imas klase za boje\n\n.button--primary { // ili button--green\n  background: green;\n  color: white;\n  border: 1px solid orange;\n  padding: 4px 8px; // Neka inicijalna vrednost\n}\n\n// Onda mozes velicine\n\n.button--medium { padding: 14px 20px; }\n.button--large { padding: 16px 96px; }\n```\n\nI onda ti HTML izgleda ovako\n\n```html\n<button class=\"button button--green button--medium\">Nesto</button>\n```\n\nOvim si dobio da ne ponavljas i recimo ako trebas da promenis border-radius svim dugmicima to radis na jednom mestu."
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 115,
+          "character": 19
+        },
+        "end": {
+          "line": 115,
+          "character": 23
+        }
+      },
+      "description": "Tesko da je velicina padding-a `96px`. Ono sto ima vise smisla je `min-width`. Znaci ako vidis da je nesto mnogo razvuceno a sadrzaj u njemu ga ne gura to je obicno `min-width`.\n\nOve moze da bude problem ako neko stavi duzi tekst ovo dugme ima mnogo da poraste."
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 125,
+          "character": 5
+        },
+        "end": {
+          "line": 125,
+          "character": 18
+        }
+      },
+      "description": "`color` property se nasledjuje, to znaci da ako **bilo koji** roditelj ima definisanu boju sva njegova deca ce imati tu boju (osim ako nije preklopljena). Zato je dobra praksa da boju definises na roditelju.\n\nNeko pravilo kojim mozes da se vodis (ali ne uvek) ako menjas pozadinu elementa **verovatno** tu menjas i boju teksta.\n\nOvako kazes, zelena pozadina + beli tekst, sve ispod nek se prilagodi.\n\nU tvom primeru, tebi je roditelj ovde `.newsletter` i tu si definisao zelenu pozadinu a na toj pozadini treba beli tekst, sto znaci to odmah tu definises i resio si problem.\n\nOvim si postigao par stvari:\n1. Nema duplog koda\n2. Definisao si samo na jednom mestu (lakse odrzavanje)\n3. Radi za sve buduce elemente koje nisi predvideo*\n\n\\* Ovo je bitno, posto ti si samo po klasam stavljao, a sta ako neko dodao novi paragraf ispod koji nema tu klasu?"
+    },
+    {
+      "file": "main.css",
+      "description": "Podrazumevana vrednost.",
+      "line": 131
+    },
+    {
+      "file": "main.css",
+      "description": "U praksi ovo ces cesto da vidis. U teoriji (a i jeste tako) ovo je jako lose. Ne treba da se desi da nema outline-a. Ok je da ga promenis ali ne da ga potpuno sklonis. Zato sto ovo mnogo znaci ljudima (kao ja) koji koriste `tab` i tastaturu da se krecu po sajtu. Kad ovo sklonis on ne zna gde mu je fokus.\n\nOvo spada u kategoriju **accesibility** issue.\n\nBas detaljno opisano ovde.\n\nhttps://www.a11yproject.com/posts/2013-01-25-never-remove-css-outlines/",
+      "line": 148
+    },
+    {
+      "file": "main.css",
+      "description": "Na primer, kad si ovde namestio boju, mogao si za ceo footer da namestis boju slova. I resio si problem za ceo futer, samo naslovi su druge boje.",
+      "line": 168
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 208,
+          "character": 1
+        },
+        "end": {
+          "line": 218,
+          "character": 2
+        }
+      },
+      "description": "Nema potrebe, zasto?\n\nOvo je moglo da se resi jednom linijom `border-bottom: 1px solid rgba(255, 255, 255, 0.48)`. Dovoljno je da to stoji na `.ft-title`."
+    },
+    {
+      "file": "main.css",
+      "description": "Nije podrzano. `grid-column-gap`",
+      "line": 251
+    },
+    {
+      "file": "main.css",
+      "description": "Ovo moze da bude pseudo element `.hero-graphics`-a.",
+      "line": 282
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 287,
+          "character": 1
+        },
+        "end": {
+          "line": 327,
+          "character": 2
+        }
+      },
+      "description": "Ima dosta stilova koji se ponavljaju. Ovo treba malo da se objedini."
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 358,
+          "character": 5
+        },
+        "end": {
+          "line": 359,
+          "character": 23
+        }
+      },
+      "description": "`margin: 0 24px`"
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 395,
+          "character": 1
+        },
+        "end": {
+          "line": 407,
+          "character": 2
+        }
+      },
+      "description": "S obzirom da ovo strci ima da ti pravi problem posto ti container (roditelj) nije ogranicen. Probaj da smanjuje browser sve dok kvadrat ne dodje do ivice i kako smanjujes pojavice se horizontalan scroll za ceo sajt. Zato moras da \"iseces\" sve sto ide van container-a\n\nNa primer:\n\n```css\n.left-right { overflow: hidden; }\n```"
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 644,
+          "character": 5
+        },
+        "end": {
+          "line": 646,
+          "character": 6
+        }
+      },
+      "description": "Par linija dole imas isto ovo."
+    },
+    {
+      "file": "main.css",
+      "description": "Ako navedes i visinu i sirinu onda si fiksirao odnos slike. Znaci uvek (ako nisu ikonice koje su uvek kockaste) ide jedno ili drugo. Posto zbog ove linije imas dosta praznog prostora zato sto su slike siroke i onda im se ogranici sirina a visina je manje ali si ti satavio ovo pa ima prazan prostor.",
+      "line": 656
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 665,
+          "character": 9
+        },
+        "end": {
+          "line": 666,
+          "character": 22
+        }
+      },
+      "description": "Ovo se podrazumeva, nema potrebe."
+    },
+    {
+      "file": "main.css",
+      "selection": {
+        "start": {
+          "line": 684,
+          "character": 17
+        },
+        "end": {
+          "line": 684,
+          "character": 31
+        }
+      },
+      "description": "Nikako `*` i `:nth-child`. Znaci `*` koristi **samo** ako hoces da pravis razmas izmedju elemenata\n\n```css\n.rasporedi-klasa > * + * { margin-left: 5px }\n```\n\nU 99% slucajeva je ovo jedina scenario koriscenja. Zato sto kad ne stavis `>` to ide u dubinu a ti kao ni ja ne znamo kakva ce sturktura da bude u buducnosti. To znaci da ces ti da utices na sve elemente bilo koje dubine. A ovo ovde znaci svaki `:nth-child(2)` a njih ima mnogoo.\n\n**Nemoj da te mrzi da dodas klasu, to je uvek bolja opcija. Znam da je tesko da se smisljaju imena za klase :(**"
+    },
+    {
+      "file": "main.css",
+      "description": "## Generalno\n\nUkratko: Odlicno je... Bas bas dobro, nema reci.\n\nDugacko:\n\nTrebas malo vise da gledas da izdvojis zajednicke stvari. Ima mnogo stvari koje se ponavljaju, to ce tebi samo da napravi problem da odrzavas stvari.\n\nOvo mozes da resis da \"prodjes\" sajt u par prolaza:\n\n### 1. Osnovni prolaz\nOvaj prolaz treba da pokrije osnovne HTML elemente, znaci:\n\n* Tipografija\n* HTML elementi (button, input, a, img, i dr...)\n* Globalni stilovi (html, body, *)\n\n### 2. Generalni layout\n\nTek u ovom prolazu pravis neki generalni layout, to su obicno:\n\n* Container\n* Sekcije (naslov, podnaslov, sadrzaj)\n* Left-right sekcija\n* Gridovi (one sa karticama)\n\n### 3. Detaljan prolaz\n\nOvo je onaj poslednji prolaz gde pravis specificne klase i komponente:\n\n* Kartice\n* Hero\n* Footer\n* Sam stil unutar sekcija (left-right, grid i ostale)\n* i dr...\n\n\nOvim ces mnogo da smanjis kod zato sto ces da krenes od zajednickih stvari i onda da ih nasledjujes na dole i shvatices da ustvari nema potreba da toliko preklapas stvari.\n\nPrimer kod tebe je: Da si odradio inicijalno tipografio primetio bi da ti je ono sto ti zoves `label` (naslov u boji) svuda isti a ti ga imas definisan za SVAKU sekciju. Sto znaci ako hoces nesto da promenis moras na mnogo mesta. Recimo da si napravio klasu `heading-label` i da si je svuda stavljao a negde je gde je malo drugacija dodas jos jednu klasu i izmenis je `heading-label color-white`.",
+      "line": 956
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 5
+        },
+        "end": {
+          "line": 21,
+          "character": 19
+        }
+      },
+      "description": "Ovo nije `section` ovo je `nav`."
+    },
+    {
+      "file": "homepage.html",
+      "description": "Moze da bude pseudo element",
+      "line": 36
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 37,
+          "character": 17
+        },
+        "end": {
+          "line": 41,
+          "character": 71
+        }
+      },
+      "description": "Ovo je primer gde si mogao da objedinis sve elemente jedno klasom i onda da imas specificne klase za svaki element\n\nNa primer:\n\n```css\n.hero-graphics__image {}\n\n.hero-graphics__image--top-left {}\n.hero-graphics__image--top-right {}\n.hero-graphics__image--bottom-left {}\n.hero-graphics__image--bottom-right {}\n.hero-graphics__image--center {}\n```"
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 180,
+          "character": 17
+        },
+        "end": {
+          "line": 185,
+          "character": 125
+        }
+      },
+      "description": "S obzirom da ovo nigde ne vodi (link) vec je akcija, onda je bolje da bude `button`."
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 206,
+          "character": 21
+        },
+        "end": {
+          "line": 211,
+          "character": 58
+        }
+      },
+      "description": "Posto je ovo lista ovo treba da bude u listi `ul > li > a`"
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 201,
+          "character": 6
+        },
+        "end": {
+          "line": 201,
+          "character": 13
+        }
+      },
+      "description": "Ovo treba da bude `footer` posto postoji element za to."
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 226,
+          "character": 21
+        },
+        "end": {
+          "line": 226,
+          "character": 49
+        }
+      },
+      "description": "Ovaj link nije funkcionala. A moze da se se poveze da na telefonu otvara zvanje\n\n```html\n<a href=\"tel:0621597030\">062 159 70 30</a>\n```\n\nNa ovakav link kad se klikne on izvrsava zvanje.\n\nhttps://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"
+    },
+    {
+      "file": "homepage.html",
+      "selection": {
+        "start": {
+          "line": 227,
+          "character": 21
+        },
+        "end": {
+          "line": 227,
+          "character": 54
+        }
+      },
+      "description": "Ovo takodje moze da bude interaktivan link\n\n```html\n<a href=\"mailto:office@alkaplus.rs\">office@alkaplus.rs</a>\n```\n\nOvaka link ce da otvori email klijent i popuni adresu."
+    }
+  ],
+  "ref": "a58d30c14162c162cc1f2361f99e07d63e5e2adc"
+}
