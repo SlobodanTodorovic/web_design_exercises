@@ -679,8 +679,7 @@ img {
 }
 
 .blog-hero {
-    text-align: center;
-    max-width: 70%;
+    text-align: center;    
     padding: 80px 24px; 
     position: relative;   
 }
@@ -693,8 +692,56 @@ img {
 }
 
 .blog-navigation {
-    padding: 10px 24px;
+    padding: 10px 24px; 
+    border-bottom: 1px solid #E3E6E5;  
+    position: relative; 
+}
+
+.blog-navigation-large {
+    padding: 30px 40px 0 40px;
     border-bottom: 1px solid #E3E6E5;
+    display: none;
+    justify-content: space-between;
+    font-size: 13px;
+    color:  #9F9FA8;    
+}
+
+.blog-navigation-large a {
+    padding-bottom: 30px;     
+    text-transform: uppercase;   
+}
+
+.blog-navigation-large a:hover {
+    border-bottom: 2px solid #088E8F;
+    color: #088E8F;
+    padding-bottom: 28px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 61px;
+    left: 24px;
+    background-color: #F5F5F5;
+    padding: 10px;
+    border-radius: 0 0 4px 4px;
+}
+
+.blog-nav-contant:hover .dropdown{
+    display: block;
+}
+
+.dropdown a {
+    display: block;    
+}
+
+.dropdown a:hover {
+    color: #088E8F;
+}
+
+.dropdown a + a {
+    margin-top: 10px;
 }
 
 .blog-nav-contant {
@@ -705,8 +752,7 @@ img {
     display: flex;
     justify-content: space-between;
     padding: 16px;
-    color:  #6C6C72;
-    
+    color:  #6C6C72;    
 }
 
 .featured,
@@ -954,7 +1000,7 @@ img {
     }
 
     .blog-hero {
-        padding: 120px 30px;
+        padding: 120px 32px;
     }
     .blog-navigation {
         padding: 14px 32px;
@@ -979,6 +1025,9 @@ img {
     }
     .two-card-hide {
         display: none;
+    }
+    .dropdown {
+        left: 32px;
     }
 }
 
@@ -1092,7 +1141,7 @@ img {
         padding-bottom: 44px;
     }   
     .blog-hero {
-        padding: 147px 30px;
+        padding: 147px 48px;
     }
     .blog-navigation {
         padding: 14px 48px;
@@ -1109,6 +1158,9 @@ img {
     }
     .other-posts {
         column-gap: 32px;
+    }
+    .dropdown {
+        left: 48px;
     }
 }
 
@@ -1216,7 +1268,7 @@ img {
         padding-bottom: 60px;
     }
     .blog-hero {
-        padding: 147px 200px;
+        padding: 147px 40px;
     }
     .featured,
     .other {
@@ -1231,6 +1283,15 @@ img {
         row-gap: 56px;
     }
     .two-card-hide {
+        display: flex;
+    }
+    .blog-navigation {
+        display: none;
+    }
+    .dropdown {
+        left: 40px;
+    }
+    .blog-navigation-large {
         display: flex;
     }
 }
