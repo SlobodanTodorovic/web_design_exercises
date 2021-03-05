@@ -881,8 +881,26 @@ img {
     padding-left: 17px;
 }
 
-.c-i-ul * + * {
+.c-i-ul * + * ,
+.e-i-ol * + * {
     margin-top: 6px;
+}
+
+.e-i-ol {
+    padding-left: 17px;    
+}
+
+.e-i-ol li,
+.c-i-ul li {
+    padding-left: 12px;
+}
+
+.e-i-ol li::marker {
+    color: #088E8F;    
+}
+
+.e-i-img {
+    width: 100%;
 }
 
 @media only screen and (min-width: 600px) {    
