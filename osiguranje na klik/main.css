@@ -851,6 +851,40 @@ img {
     margin: 0 auto;
 }
 
+.accident-definition {
+    margin-top: 64px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid  #E8EBEA;    
+}
+
+.single-blog-section h3 {
+    font-size: 32px;
+}
+
+.single-blog-section h4 {
+    font-size: 24px;
+}
+
+.a-d-definition {    
+    margin-right: 64px;
+    padding-left: 27px;
+    border-left: 3px solid #088E8F;    
+}
+
+.c-i-link {
+    color: #088E8F;
+    text-decoration: underline;
+}
+
+.c-i-ul {
+    list-style: url(img/bullet.png);
+    padding-left: 17px;
+}
+
+.c-i-ul * + * {
+    margin-top: 6px;
+}
+
 @media only screen and (min-width: 600px) {    
        
     .nav-button {
