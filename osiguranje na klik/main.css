@@ -850,13 +850,28 @@ img {
     margin-left: 11px;
 } 
 
+.social-share-sticky {
+    width: 20px;
+    position: sticky;
+    top: 100px;     
+    margin-top: 60px;    
+}
+
+.social-share-sticky a {
+    display: block;    
+}
+
+.social-share-sticky a + a {
+    margin-top: 11px;
+}
+
 .single-blog-centred {
     max-width: 80%;
     margin: 0 auto;
 }
 
 .accident-definition {
-    margin-top: 64px;
+    margin-top: -84px;
     padding-bottom: 40px;
     border-bottom: 1px solid  #E8EBEA;    
 }
