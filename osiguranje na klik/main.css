@@ -675,7 +675,7 @@ img {
 
 .blog-hero-bg {
     background-color: #F9F5F2;    
-    background-image: url(img/pattern-green.png);
+    background-image: url(img/pattern-brown.png);
 }
 
 .blog-hero {
@@ -796,7 +796,7 @@ img {
     display: flex;   
     justify-content: center;
     align-items: center; 
-    margin: 50px;    
+    margin-top: 50px;    
 }
 
 .blog-components * + * {
