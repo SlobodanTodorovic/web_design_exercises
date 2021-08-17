@@ -18,7 +18,7 @@ body {
 .social {
     width: 20px;
     height: 20px;     
-    margin: 20px 10px;     
+    margin: 20px 10px;  
 }
 
 .menu {
@@ -30,9 +30,26 @@ body {
     height: 40px;
     font-size: 35px;
     text-align: center;
-    display: none;   
-    padding: 0;
+    display: none;       
 }
+
+.menu:focus ~ .nav {
+    display: block;
+    position: fixed;
+    right: 100px;
+    top: 100px;
+    background-color: black;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+}
+
+/*.menu:focus ~ .nav li {
+    color: white;
+    background-color: black;
+}*/
 
 .nav {        
     flex-wrap: wrap;
@@ -42,8 +59,50 @@ body {
 }
 
 .nav li {
-    flex:1 0 110px ;
+    flex:0 0 110px ;
+    position: relative;
 }
+/*.nav:first-child a {
+    color: orange; zasto ovo ne radi
+} */
+.active > a{
+    color: orange;
+}
+
+.menu-nav {
+    background-color: orange;
+    position: absolute;
+    top: 20px;
+    left: 0px;
+    min-width: 100px;
+    z-index: 2;
+    list-style: none;
+    padding: 0px;
+    margin: 0;    
+    width: max-content;
+    opacity: 0;        
+    transition: 400ms ease-in-out;
+    visibility: hidden;
+       
+}
+
+.menu-nav li + li {
+    border-top: 1px solid black;
+}
+
+.menu-nav li {
+    padding: 9px;     
+}
+
+.menu-nav li a:hover {
+    color: white;
+}
+
+.menu-nav li a,
+.nav li a {
+    transition: 400ms;
+}
+
 
 .copyrights {       
     padding: 30px 0px;
@@ -103,8 +162,7 @@ body {
 }
 
 .container {    
-    flex-direction: column;
-    position: relative;
+    flex-direction: column;    
     min-width: 380px;        
 }
 
@@ -123,9 +181,8 @@ body {
 }
 
 .yelow {
-    background-color: yellow;
+    background-color: yellow;    
 }
-
 .dark-green {
     background-color: rgb(1, 66, 1);
 }
@@ -200,6 +257,46 @@ body {
     display: flex;
 }
 
+.slider-container {
+    position: relative;
+}
+.slider-navs {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    color: white;
+    font-size: 32px;    
+    left: 19px;
+    right: 19px;
+    top: 50%;
+    opacity: 0;
+}
+
+
+.slider-navs i {
+    cursor: pointer;
+}
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 15px;
+    left: 3px;
+    right: 3px;
+}
+.slider-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid white;    
+}
+.slider-dot-colored {
+    background-color: wheat;
+}
+.slider-dots span + span {
+    margin-left: 5px;
+}
+
 @media only screen and (max-width: 960px) {
     .logo {
         flex-direction: column;
@@ -214,7 +311,11 @@ body {
         
         .menu {
             display: block;
-        }    
+        }           
+
+        .nav {
+            display: none;
+        }
         
         .footer-container{
             flex-direction: column;
@@ -241,23 +342,6 @@ body {
         .statistics {
             flex-direction: column;            
         }
-
-        .yelow {
-            visibility: hidden;
-        }
-        /* add this class to <ul class="nav> 
-        in html in order to show menu in small screen. */
-
-        .nav-small {
-            display: block;
-            position: fixed;
-            right: 100px;
-            top: 100px;
-            background-color: black;
-            color: white;
-            visibility: visible;
-        }
-          
 }
 
 @media only screen and (max-width: 1140px){
