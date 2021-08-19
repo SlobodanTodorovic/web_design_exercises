@@ -73,7 +73,7 @@ function fadeIn(elem){
         console.log("Hello"); 
         elem.style.transition = "opacity 0.5s linear 0s";
         elem.style.opacity = 1;
-    }, 500);//500 sam zamenio sa 1 cisto da vidis
+    }, 1);//ovde se ceka samo 1ms sto je prakticno nista ali bez settimeout nece da radi transition
 }
 for (const li of navLis) {      
     const link=li.querySelector('a')    
