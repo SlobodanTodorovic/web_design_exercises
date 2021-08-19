@@ -59,6 +59,22 @@ const sliderDots= document.querySelectorAll('.slider-dot')
 sliderDots[0].classList.add('slider-dot-colored')
 
 const navLis= document.querySelectorAll('.nav >li')
+function fadeOut(elem) {
+    elem.style.transition = "opacity 0.5s linear 0s";
+	elem.style.opacity = 0;
+    setTimeout(function(){ 
+        console.log("Hello"); 
+        elem.style.display = 'none'
+    }, 500);
+}    
+function fadeIn(elem){
+    elem.style.display = 'block'
+    setTimeout(function(){ 
+        console.log("Hello"); 
+        elem.style.transition = "opacity 0.5s linear 0s";
+        elem.style.opacity = 1;
+    }, 500);//500 sam zamenio sa 1 cisto da vidis
+}
 for (const li of navLis) {      
     const link=li.querySelector('a')    
     const menu=li.querySelector('.menu-nav')
@@ -66,8 +82,7 @@ for (const li of navLis) {
         
         link.style.color='orange'
         if (menu!==null) {
-            menu.style.visibility='visible'       
-            menu.style.opacity='1' 
+            fadeIn(menu)
         }                    
         
     })
@@ -76,8 +91,7 @@ for (const li of navLis) {
             link.style.color='black'
         }  
         if (menu!==null) {
-            menu.style.opacity='0'
-            menu.style.visibility='hidden' 
+            fadeOut(menu)
         }                
                 
     })

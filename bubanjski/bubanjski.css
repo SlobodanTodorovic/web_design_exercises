@@ -2,7 +2,8 @@ body {
     margin: 0;
     padding: 0;
 }
-.logo {           
+.logo {   
+    position: relative;        
     justify-content: space-between;
     align-items: center;
 }
@@ -21,25 +22,27 @@ body {
     margin: 20px 10px;  
 }
 
-.menu {
+.menu-button {
     position: absolute;
-    right: 100px;
-    top: 50px;
+    right: 20px;
+    top: 20px;
     background-color: black;    
     width: 40px;
     height: 40px;
     font-size: 35px;
     text-align: center;
-    display: none;       
+    display: none;    
+    border: 0;
+    cursor: pointer;   
 }
 
-.menu:focus ~ .nav {
+/*.menu:focus ~ .nav {
     display: block;
     position: fixed;
     right: 100px;
     top: 100px;
     background-color: black;
-}
+}*/
 
 .nav a {
     text-decoration: none;
@@ -80,9 +83,10 @@ body {
     padding: 0px;
     margin: 0;    
     width: max-content;
-    opacity: 0;        
-    transition: 400ms ease-in-out;
-    visibility: hidden;
+    opacity: 0;           
+    /*transition: 400ms;*/
+    display: none; /*ako ovde stavim display none*/
+    
        
 }
 
@@ -102,8 +106,22 @@ body {
 .nav li a {
     transition: 400ms;
 }
-
-
+.small-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    list-style: none;
+}
+.small-menu a {
+    text-decoration: none;
+}
+.small-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.small-menu * a {
+    color: inherit;
+}
 .copyrights {       
     padding: 30px 0px;
     justify-content: space-between;         
@@ -309,7 +327,7 @@ body {
 
 @media only screen and (max-width: 770px) {
         
-        .menu {
+        .menu-button {
             display: block;
         }           
 
