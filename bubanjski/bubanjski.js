@@ -1,55 +1,60 @@
 const slider=document.querySelector('.slider')
-const sliderContainer=document.querySelector('.slider-container')
-let sliderPosition=0
+const sliderContainer=slider.parentElement
+sliderPosition=0
+const slideInterval=2000
 const sliderRight=document.querySelector('#slider-arrow-right')
 const sliderLeft=document.querySelector('#slider-arrow-left')
-function sliderGo() {
-    if (sliderPosition===-400) {
-        sliderPosition=0
-    }else{
-        sliderPosition-=100
-    }   
+const dots= document.querySelectorAll('.slider-dot')
+const sliderImages=document.querySelectorAll('#slider-img')
+let selectedImage=0
+
+function sliderSwap(newSelected) {
+    if (newSelected===sliderImages.length) {
+        newSelected=0
+    }else if (newSelected===-1) {  
+        newSelected=sliderImages.length-1
+    }
+    sliderPosition=newSelected*-100
     slider.style.translate=`${sliderPosition}%`
+    dots[selectedImage].classList.remove('slider-dot-colored')
+    dots[newSelected].classList.add('slider-dot-colored')   
+    selectedImage=newSelected
+    
 }
-let id = setInterval(sliderGo,2000)
+
+for (let i = 0; i < dots.length; i++) {
+    dots[i].addEventListener('click',function(evt) {
+        sliderSwap(i)        
+    })    
+}
+
+function slideToRight() {     
+    sliderSwap(selectedImage+1)   
+}
+function slideToLeft() {    
+    sliderSwap(selectedImage-1)         
+}
+
+let id = setInterval(slideToRight,slideInterval)
 sliderContainer.addEventListener('mouseenter',function () {    
     clearInterval(id)
 })
 sliderContainer.addEventListener('mouseleave',function(){    
-    id=setInterval(sliderGo,2000)
+    id=setInterval(slideToRight,slideInterval)
 })
-sliderRight.addEventListener('click',function (evt) {    
-    if (sliderPosition===-400) {
-        sliderPosition=0
-    }else{
-        sliderPosition-=100
-    }   
-    slider.style.translate=`${sliderPosition}%`
-    
-})
-sliderLeft.addEventListener('click',function (evt) {    
-    if (sliderPosition===0) {
-        sliderPosition=-400
-    }else{
-        sliderPosition+=100
-    }    
-    slider.style.translate=`${sliderPosition}%`
-    
-})
-
+sliderRight.addEventListener('click',slideToRight)
+sliderLeft.addEventListener('click',slideToLeft )
 
 const navLis= document.querySelectorAll('.nav >li')
 for (const li of navLis) {      
     const link=li.querySelector('a')    
     const menu=li.querySelector('.menu-nav')
-    link.addEventListener('mouseenter',function(evt) {
-        
+    link.addEventListener('mouseenter',function(evt) {        
         link.style.color='orange'
         if (menu!==null) {
             menu.style.visibility='visible'       
             menu.style.opacity='1' 
-        }                    
-        
+        }                
     })
     li.addEventListener('mouseleave',function (evt) {
         if (!li.classList.contains('active')) {
@@ -58,7 +63,6 @@ for (const li of navLis) {
         if (menu!==null) {
             menu.style.opacity='0'
             menu.style.visibility='hidden' 
-        }                
-                
+        }                                
     })
 }
