@@ -44,9 +44,6 @@ const slideToLeft = function () {
     }
 }
 let id=setInterval(slideToRight,2000)
-
-
-
 sliderArrowRight.addEventListener('click',slideToRight )
 sliderArrowLeft.addEventListener('click',slideToLeft )
 const dotsContainer= document.querySelector('.slider-dots')
@@ -58,41 +55,67 @@ for (let i = 0; i < sliderImages.length; i++) {
 const sliderDots= document.querySelectorAll('.slider-dot')
 sliderDots[0].classList.add('slider-dot-colored')
 
+
 const navLis= document.querySelectorAll('.nav >li')
-function fadeOut(elem) {
-    elem.style.transition = "opacity 0.5s linear 0s";
-	elem.style.opacity = 0;
-    setTimeout(function(){ 
-        console.log("Hello"); 
-        elem.style.display = 'none'
-    }, 500);
-}    
-function fadeIn(elem){
-    elem.style.display = 'block'
-    setTimeout(function(){ 
-        console.log("Hello"); 
-        elem.style.transition = "opacity 0.5s linear 0s";
-        elem.style.opacity = 1;
-    }, 1);//ovde se ceka samo 1ms sto je prakticno nista ali bez settimeout nece da radi transition
-}
-for (const li of navLis) {      
-    const link=li.querySelector('a')    
+for (const li of navLis) {
     const menu=li.querySelector('.menu-nav')
-    link.addEventListener('mouseenter',function(evt) {
-        
-        link.style.color='orange'
+    const link=li.children[0]     
+    
+    link.addEventListener('mouseenter',function (evt) {
         if (menu!==null) {
-            fadeIn(menu)
-        }                    
-        
-    })
-    li.addEventListener('mouseleave',function (evt) {
-        if (!li.classList.contains('active')) {
-            link.style.color='black'
-        }  
-        if (menu!==null) {
-            fadeOut(menu)
-        }                
+            menu.classList.add('menu-nav-visible') 
+            li.addEventListener('mouseleave',function (evt) {                
+                menu.classList.remove('menu-nav-visible')
+            })  
+            
+            li.addEventListener('mousedown',function (evt) {
                 
-    })
+                menu.classList.add('menu-nav-ss-show')
+                nav.classList.remove('nav-visible')
+            })
+            const back= menu.children[0]
+            back.addEventListener('click',function (evt) {                
+                menu.classList.remove('menu-nav-ss-show')
+                nav.classList.add('nav-visible')
+                evt.stopPropagation()
+            })
+        }
+    })    
 }
+
+const menuButton=document.querySelector('.menu-button')
+const nav=document.querySelector('.nav')
+
+menuButton.addEventListener('click',function(evt) {    
+    const menu=document.querySelector('.menu-nav-ss-show')
+    if (!menu) {
+        nav.classList.toggle('nav-visible')
+    }else{
+        menu.classList.remove('menu-nav-ss-show')
+    }     
+})
+
+window.addEventListener('click',function (evt) {
+    let turnOf=true    
+    if (evt.target===menuButton || evt.target===menuButton.children[0]) {        
+        turnOf=false        
+    } else {
+        for (li of navLis) {
+        
+            if (evt.target===li  || evt.target.parentElement===li || evt.target.parentElement.parentElement===li || evt.target.parentElement.parentElement.parentElement===li ) {
+                turnOf=false
+            }        
+        }
+    }    
+    if (turnOf===true) { 
+        const menu= document.querySelector('.menu-nav-ss-show') 
+        if (menu) {
+            menu.classList.remove('menu-nav-ss-show')
+        }                     
+        nav.classList.remove('nav-visible')
+    }
+})
+
+menuButton.addEventListener('blur',function(evt) {          
+    nav.classList.remove('nav-visible')        
+})

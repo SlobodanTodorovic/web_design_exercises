@@ -1,6 +1,8 @@
 body {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 .logo {   
     position: relative;        
@@ -36,25 +38,31 @@ body {
     cursor: pointer;   
 }
 
-/*.menu:focus ~ .nav {
-    display: block;
-    position: fixed;
-    right: 100px;
-    top: 100px;
-    background-color: black;
-}*/
+
 
 .nav a {
     text-decoration: none;
     color: black;
 }
 
-/*.menu:focus ~ .nav li {
-    color: white;
-    background-color: black;
-}*/
+.nav li>a:hover {
+    transition: 400ms;
+    color: orange;
+}
 
-.nav {        
+
+.nav-link {
+    display: flex;    
+}
+.nav-link span{
+    margin-left: auto;
+}
+.hidden-ls {
+    display: none;
+}
+
+.nav {    
+    /* background-color: yellow;        */
     flex-wrap: wrap;
     list-style: none;    
     margin: 0;
@@ -65,9 +73,11 @@ body {
     flex:0 0 110px ;
     position: relative;
 }
-/*.nav:first-child a {
-    color: orange; zasto ovo ne radi
-} */
+
+.nav li {
+    margin-left: 5px;
+}
+
 .active > a{
     color: orange;
 }
@@ -83,11 +93,14 @@ body {
     padding: 0px;
     margin: 0;    
     width: max-content;
-    opacity: 0;           
-    /*transition: 400ms;*/
-    display: none; /*ako ovde stavim display none*/
-    
-       
+    opacity: 0;         
+    transition: 400ms;
+    visibility: hidden;      
+}
+
+.menu-nav-visible {
+    visibility: visible;
+    opacity: 1;
 }
 
 .menu-nav li + li {
@@ -102,26 +115,6 @@ body {
     color: white;
 }
 
-.menu-nav li a,
-.nav li a {
-    transition: 400ms;
-}
-.small-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    list-style: none;
-}
-.small-menu a {
-    text-decoration: none;
-}
-.small-menu ul {
-    list-style: none;
-    padding: 0;
-}
-.small-menu * a {
-    color: inherit;
-}
 .copyrights {       
     padding: 30px 0px;
     justify-content: space-between;         
@@ -329,10 +322,90 @@ body {
         
         .menu-button {
             display: block;
-        }           
+        }
+        
+        ul.nav {
+            padding: 0px;
+        }
 
         .nav {
+            display: block;
+            background-color: rgba(30, 30, 30, 0);
+            max-width: 390px;
+            position: absolute;
+            visibility: hidden;
+            
+            z-index: 1;
+            transition-property:  background-color;
+            transition-duration: .3s;
+            transition-timing-function: ease-in-out;
+            top: 111px;
+            left: 20px;
+            right: 20px;
+
+        }
+
+        .nav-visible {
+            visibility: visible;
+            background-color: rgb(46, 46, 46);
+        }
+
+        .s-screen-hidden {
             display: none;
+        }
+
+        .nav li {
+            position: static;
+            padding: 15px 20px;
+            margin: 0;
+        }
+
+        .nav a {
+            color: white;
+            
+        }
+
+        .menu-nav {
+            width: 100%;
+            display: block;
+            background-color: #303030;
+            max-width: 390px;
+            position: absolute;
+            visibility: hidden;
+            opacity: 0;
+            z-index: 1;
+            transition-property: opacity,transform;
+            transition-duration: .3s;
+            transition-timing-function: ease-in-out;
+            top: 0px;
+            transform: translate(100%);    
+        }
+        
+        .menu-nav-visible {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .menu-nav-ss-show {
+            visibility: visible;
+            opacity: 1;
+             
+            transform: translate(0); 
+
+        }
+
+        .hidden-ls {
+            display: block;
+        }
+        .nav li>a:hover {
+            transition: 400ms;
+            color: white
+        }
+                
+        .nav li:hover {
+            transition: 400ms;
+            background-color: #555555;  
+            cursor: pointer;  
         }
         
         .footer-container{
@@ -370,5 +443,6 @@ body {
     .img {
         padding: 0px;
     }
+    
 }
     
