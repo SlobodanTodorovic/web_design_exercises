@@ -1,11 +1,32 @@
+function createDots(beforeElement,numberOfDots) {
+    const dotsContainer=document.createElement('div')
+    dotsContainer.classList.add('slider-dots')
+    console.log(numberOfDots);
+    for (let i = 0; i < numberOfDots; i++) {
+        console.log(i);
+        const dot=document.createElement('span')
+        dot.classList.add('slider-dot')
+        dot.addEventListener('click',function(evt) {
+            sliderSwap(i)        
+        })    
+        if (i===0) {
+            dot.classList.add('slider-dot-colored')
+        }
+        dotsContainer.appendChild(dot)        
+    }
+    beforeElement.insertAdjacentElement('afterend',dotsContainer)
+}
 const slider=document.querySelector('.slider')
 const sliderContainer=slider.parentElement
-sliderPosition=0
+const sliderImages=document.querySelectorAll('.slider-img-js')
+createDots(slider,sliderImages.length)
+let sliderPosition=0
 const slideInterval=2000
 const sliderRight=document.querySelector('#slider-arrow-right')
 const sliderLeft=document.querySelector('#slider-arrow-left')
 const dots= document.querySelectorAll('.slider-dot')
-const sliderImages=document.querySelectorAll('#slider-img')
+
+
 let selectedImage=0
 
 function sliderSwap(newSelected) {
@@ -20,12 +41,6 @@ function sliderSwap(newSelected) {
     dots[newSelected].classList.add('slider-dot-colored')   
     selectedImage=newSelected
     
-}
-
-for (let i = 0; i < dots.length; i++) {
-    dots[i].addEventListener('click',function(evt) {
-        sliderSwap(i)        
-    })    
 }
 
 function slideToRight() {     

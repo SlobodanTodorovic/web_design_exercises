@@ -266,7 +266,9 @@ body {
     max-width: 800px;    
     display: flex;
     width: 100%;
-    transition: 500ms;
+    transition-property: translate;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
 }
 
 .slider-container:hover .slider-navs {
