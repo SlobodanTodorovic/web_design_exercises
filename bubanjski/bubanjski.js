@@ -3,7 +3,6 @@ function createDots(beforeElement,numberOfDots) {
     dotsContainer.classList.add('slider-dots')
     console.log(numberOfDots);
     for (let i = 0; i < numberOfDots; i++) {
-        console.log(i);
         const dot=document.createElement('span')
         dot.classList.add('slider-dot')
         dot.addEventListener('click',function(evt) {
