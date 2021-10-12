@@ -62,7 +62,7 @@ for (const li of navLis) {
     const link=li.children[0]     
     
     link.addEventListener('mouseenter',function (evt) {
-        if (menu!==null) {
+        if (menu) {
             menu.classList.add('menu-nav-visible') 
             li.addEventListener('mouseleave',function (evt) {                
                 menu.classList.remove('menu-nav-visible')
@@ -95,19 +95,41 @@ menuButton.addEventListener('click',function(evt) {
     }     
 })
 
-window.addEventListener('click',function (evt) {
-    let turnOf=true    
-    if (evt.target===menuButton || evt.target===menuButton.children[0]) {        
-        turnOf=false        
-    } else {
-        for (li of navLis) {
-        
-            if (evt.target===li  || evt.target.parentElement===li || evt.target.parentElement.parentElement===li || evt.target.parentElement.parentElement.parentElement===li ) {
-                turnOf=false
+
+//proverava da li node ili predak ima neku od zadatih klasa i vraca boolean
+function ancestorHasClass(element, NizKlasa) {    
+    while (element) {
+        console.log(element);
+        for (const klasa of NizKlasa) {
+            if (element.classList.contains(klasa)) {            
+                return true 
             }        
         }
-    }    
-    if (turnOf===true) { 
+            element=element.parentElement              
+    }
+    return false
+}   
+
+//proverava da li je element ( ili njegovi preci ) neki od elemenata iz niza
+function ancestorIsNode(checkingElement, elementsToCheck) {    
+    while (checkingElement) {
+        console.log(checkingElement);
+        if (elementsToCheck.indexOf(checkingElement)>-1) {
+            return true
+        }        
+        checkingElement = checkingElement.parentElement
+    }
+}
+/*
+//logika za funkciju ancestorIsNode
+window.addEventListener('click',function (evt) {
+    let turnOf=true  
+    const arrayToCheck = [menuButton,...navLis]
+     if ( ancestorIsNode(evt.target, arrayToCheck) ) {
+        turnOf= false
+    } 
+    
+    if (turnOf) { 
         const menu= document.querySelector('.menu-nav-ss-show') 
         if (menu) {
             menu.classList.remove('menu-nav-ss-show')
@@ -115,6 +137,27 @@ window.addEventListener('click',function (evt) {
         nav.classList.remove('nav-visible')
     }
 })
+*/
+
+
+//logika za funkciju ancestorHasClass
+window.addEventListener('click',function (evt) {
+    let turnOf=true  
+
+     if ( ancestorHasClass(evt.target, ['nav','menu-button']) ) {
+        turnOf= false
+    }    
+    
+    if (turnOf) { 
+        const menu= document.querySelector('.menu-nav-ss-show') 
+        if (menu) {
+            menu.classList.remove('menu-nav-ss-show')
+        }                     
+        nav.classList.remove('nav-visible')
+    }
+})
+
+
 
 menuButton.addEventListener('blur',function(evt) {          
     nav.classList.remove('nav-visible')        
